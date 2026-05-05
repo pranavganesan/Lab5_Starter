@@ -21,7 +21,7 @@ function init() {
     
     // Update Image and Audio source based on selection
     hornImg.src = `assets/images/${selectedHorn}.svg`;
-    hornAudio.src = `assets/scripts/../assets/audio/${selectedHorn}.mp3`;
+    hornAudio.src = `assets/audio/${selectedHorn}.mp3`;
     
     // Ensure alt text stays relevant
     hornImg.alt = `${selectedHorn} selected`;
