@@ -6,7 +6,7 @@ import {
   isStrongPassword,
   isDate,
   isHexColor,
-} from '../unit-test-me.js';
+} from './unit-test-me.js';
 
 /**
  * isPhoneNumber Tests
