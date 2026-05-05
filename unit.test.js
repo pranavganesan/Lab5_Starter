@@ -1,5 +1,3 @@
-// unit.test.js
-
 import {
   isPhoneNumber,
   isEmail,
@@ -9,96 +7,54 @@ import {
 } from './unit-test-me.js';
 
 /**
- * isPhoneNumber Tests
+ * Validates inputs using Jest's each() to stay DRY (Don't Repeat Yourself)
  */
-test('isPhoneNumber returns true for valid phone number with dashes', () => {
-  expect(isPhoneNumber('123-456-7890')).toBe(true);
-});
 
-test('isPhoneNumber returns true for valid phone number with parentheses', () => {
-  expect(isPhoneNumber('(123) 456-7890')).toBe(true);
-});
+describe('Unit Test Validation Suite', () => {
 
-test('isPhoneNumber returns false for too few digits', () => {
-  expect(isPhoneNumber('123-456')).toBe(false);
-});
+  test.each([
+    ['123-456-7890', true],
+    ['(123) 456-7890', true],
+    ['123-456', false],
+    ['800-HOT-LINE', false],
+  ])('isPhoneNumber(%s) should be %s', (input, expected) => {
+    expect(isPhoneNumber(input)).toBe(expected);
+  });
 
-test('isPhoneNumber returns false for letters', () => {
-  expect(isPhoneNumber('800-HOT-LINE')).toBe(false);
-});
+  test.each([
+    ['hello@ucsd.edu', true],
+    ['first.last@gmail.com', true],
+    ['username.gmail.com', false],
+    ['user@domain', false],
+  ])('isEmail(%s) should be %s', (input, expected) => {
+    expect(isEmail(input)).toBe(expected);
+  });
 
-/**
- * isEmail Tests
- */
-test('isEmail returns true for standard email', () => {
-  expect(isEmail('hello@ucsd.edu')).toBe(true);
-});
+  test.each([
+    ['a1234_', true],
+    ['z_1234567890123', true],
+    ['1abcde', false],
+    ['abc', false],
+  ])('isStrongPassword(%s) should be %s', (input, expected) => {
+    expect(isStrongPassword(input)).toBe(expected);
+  });
 
-test('isEmail returns true for email with dots', () => {
-  expect(isEmail('first.last@gmail.com')).toBe(true);
-});
+  test.each([
+    ['05/05/2026', true],
+    ['5/5/2026', true],
+    ['05/05/26', false],
+    ['May-5th-2026', false],
+  ])('isDate(%s) should be %s', (input, expected) => {
+    expect(isDate(input)).toBe(expected);
+  });
 
-test('isEmail returns false for missing @', () => {
-  expect(isEmail('username.gmail.com')).toBe(false);
-});
+  test.each([
+    ['#FFFFFF', true],
+    ['#000', true],
+    ['#GGG000', false],
+    ['#1234567', false],
+  ])('isHexColor(%s) should be %s', (input, expected) => {
+    expect(isHexColor(input)).toBe(expected);
+  });
 
-test('isEmail returns false for missing top-level domain', () => {
-  expect(isEmail('user@domain')).toBe(false);
-});
-
-/**
- * isStrongPassword Tests
- */
-test('isStrongPassword returns true for standard strong password', () => {
-  expect(isStrongPassword('a1234_')).toBe(true);
-});
-
-test('isStrongPassword returns true for max length password', () => {
-  expect(isStrongPassword('z_1234567890123')).toBe(true);
-});
-
-test('isStrongPassword returns false for passwords starting with numbers', () => {
-  expect(isStrongPassword('1abcde')).toBe(false);
-});
-
-test('isStrongPassword returns false for too short passwords', () => {
-  expect(isStrongPassword('abc')).toBe(false);
-});
-
-/**
- * isDate Tests
- */
-test('isDate returns true for standard date format', () => {
-  expect(isDate('05/05/2026')).toBe(true);
-});
-
-test('isDate returns true for single digit month/day', () => {
-  expect(isDate('5/5/2026')).toBe(true);
-});
-
-test('isDate returns false for 2-digit years', () => {
-  expect(isDate('05/05/26')).toBe(false);
-});
-
-test('isDate returns false for nonsensical strings', () => {
-  expect(isDate('May-5th-2026')).toBe(false);
-});
-
-/**
- * isHexColor Tests
- */
-test('isHexColor returns true for 6-character hex', () => {
-  expect(isHexColor('#FFFFFF')).toBe(true);
-});
-
-test('isHexColor returns true for 3-character hex', () => {
-  expect(isHexColor('#000')).toBe(true);
-});
-
-test('isHexColor returns false for invalid hex characters', () => {
-  expect(isHexColor('#GGG000')).toBe(false);
-});
-
-test('isHexColor returns false for too many characters', () => {
-  expect(isHexColor('#1234567')).toBe(false);
 });
