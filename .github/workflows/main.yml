@@ -9,12 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true  # Opt-in for May 2026 standards
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '16'
-    - run: npm install
+        node-version: '22' # Using stable LTS for 2026
+        cache: 'npm'
+    - run: npm ci # Faster, cleaner install for CI
     - run: npm test
