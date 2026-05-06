@@ -4,7 +4,7 @@ import {
   isStrongPassword,
   isDate,
   isHexColor,
-} from './unit-test-me.js';
+} from '../code-to-unit-test/unit-test-me.js';
 
 /**
  * Validates inputs using Jest's each() to stay DRY (Don't Repeat Yourself)
