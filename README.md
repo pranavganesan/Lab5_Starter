@@ -1,17 +1,7 @@
-# Lab 5 - CI/CD and Testing
+# Lab 5 - JavaScript DOM Basics and GitHub Actions
 
-This repository contains the implementation of a basic CI/CD pipeline using **GitHub Actions** and unit testing with **Jest**.
+Name: Pranav Ganesan
 
-## Project Structure
-* **`code-to-unit-test/`**: Contains the source logic for summation and various regex-based string validations.
-* **`__tests__/`**: Contains the Jest test suites for all validation functions.
-* **`.github/workflows/`**: Contains the CI/CD configuration to run tests automatically on every push.
+[Expose Page](https://pranavganesan.github.io/Lab5_Starter/expose.html)
 
-## Lab Artifacts
-* `myError.png`: Evidence of a failed build check.
-* `merged.png`: Evidence of a successful passing build check.
-
-## Setup
-To run tests locally:
-1. `npm install`
-2. `npm test`
+[Explore Page](https://pranavganesan.github.io/Lab5_Starter/explore.html)
